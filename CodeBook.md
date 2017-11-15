@@ -38,3 +38,23 @@ Tidy data:
 * "tidy data" is the tidy data set with the average of each variable for each activity and each subject
 * "tidy_ordered_data" is the tidy data set additionally ordered by activity and subject
 
+## Transformations
+In order to perform the actions requested in the script, the following steps have been performed:
+
+0. Download data source
+* Using the given url .zip file is downloaded and unzipped in the working directory
+1. Load different input files into R tables
+* Using the read.table command, the different inout files are read and stored in variables (see variables section).
+* Taking advantage of the features input file and the information provided, proper names are assigned to the columns of the tables.
+* Using cbind, features data, feature name and subject ID that perform it is consolidated into one single table.
+2. Extracts only the measurements on the mean and standard deviation
+* Using grepl, only specific columns are gathered: activityID, subjectID and all those including the word "mean" or "std"
+3. Replace activityID by the more descriptive activityName
+* Matching the consolidated table with the activityLabels one, names of the activities are gathered using merge command.
+4. Appropriately labels the data set with descriptive variable names
+* Using gsub, short names are replaced by long descriptive names.
+5. Creation of independent tidy data set with the average of each variable for each activity and each subject.
+* Using aggregate function calculates mean for each activity and subject
+* Using order command within subsetting, the data set is ordered by the 2 main variables activity and subject
+* Write final tidy data set to a text file
+
